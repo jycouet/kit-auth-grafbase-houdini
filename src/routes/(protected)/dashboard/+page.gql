@@ -1,0 +1,10 @@
+query Todos {
+	todoCollection(first: 6) {
+		edges {
+			node {
+				title
+				complete
+			}
+		}
+	}
+}
