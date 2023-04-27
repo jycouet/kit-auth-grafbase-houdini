@@ -3,7 +3,7 @@
 1. `pnpm i`
 2. create `.env` from `.env.example` following comments in the file.
 3. `pnpm dev` to start
-4. GraphiQL: http://127.0.0.1:4000 and site: http://localhost:5173
+4. GraphiQL: http://127.0.0.1:4000 and site: http://127.0.0.1:5173
 5. Add todos in GraphiQL:
 
 ```gql
