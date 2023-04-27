@@ -1,0 +1,10 @@
+query KPI {
+	kPICollection(first: 6) {
+		edges {
+			node {
+				title
+				target
+			}
+		}
+	}
+}

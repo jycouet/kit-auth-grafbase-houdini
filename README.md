@@ -26,5 +26,17 @@ mutation Add {
 			title
 		}
 	}
+	d: kPICreate(input: { title: "Number of KM by bike per week", target: 300 }) {
+		kPI {
+			id
+			title
+		}
+	}
+	e: kPICreate(input: { title: "Less coffee per day! (max x)", target: 3 }) {
+		kPI {
+			id
+			title
+		}
+	}
 }
 ```
