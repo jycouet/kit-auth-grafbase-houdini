@@ -1,5 +1,11 @@
-type Todo @model {
+type Pricing @model {
 	id: ID!
 	title: String!
-	complete: Boolean!
+	value: Float!
+}
+
+type KPI @model {
+	id: ID!
+	title: String!
+	target: Float!
 }

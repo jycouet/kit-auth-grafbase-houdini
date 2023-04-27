@@ -21,15 +21,88 @@ For example, the date-time string 2016-01-01T14:10:20+01:00 is shifted to 2016-0
 """
 scalar DateTime
 
+"""Possible operations for a Float field"""
+input FloatOperationsInput {
+  decrement: Float
+  increment: Float
+  set: Float
+}
+
+type KPI {
+  """when the model was created"""
+  createdAt: DateTime!
+
+  """Unique identifier"""
+  id: ID!
+  target: Float!
+  title: String!
+
+  """when the model was updated"""
+  updatedAt: DateTime!
+}
+
+input KPIByInput {
+  id: ID
+}
+
+type KPIConnection {
+  edges: [KPIEdge]
+
+  """Information to aid in pagination"""
+  pageInfo: PageInfo!
+}
+
+"""Input to create a KPI"""
+input KPICreateInput {
+  target: Float!
+  title: String!
+}
+
+type KPICreatePayload {
+  kPI: KPI
+}
+
+type KPIDeletePayload {
+  deletedId: ID!
+}
+
+type KPIEdge {
+  cursor: String!
+  node: KPI!
+}
+
+input KPIOrderByInput {
+  createdAt: OrderByDirection
+}
+
+"""Input to update a KPI"""
+input KPIUpdateInput {
+  target: FloatOperationsInput
+  title: String
+}
+
+type KPIUpdatePayload {
+  kPI: KPI
+}
+
 type Mutation {
-  """Create a Todo"""
-  todoCreate(input: TodoCreateInput!): TodoCreatePayload
+  """Create a KPI"""
+  kPICreate(input: KPICreateInput!): KPICreatePayload
 
-  """Delete a Todo by ID or unique field"""
-  todoDelete(by: TodoByInput!): TodoDeletePayload
+  """Delete a KPI by ID or unique field"""
+  kPIDelete(by: KPIByInput!): KPIDeletePayload
 
-  """Update a Todo"""
-  todoUpdate(by: TodoByInput!, input: TodoUpdateInput!): TodoUpdatePayload
+  """Update a KPI"""
+  kPIUpdate(by: KPIByInput!, input: KPIUpdateInput!): KPIUpdatePayload
+
+  """Create a Pricing"""
+  pricingCreate(input: PricingCreateInput!): PricingCreatePayload
+
+  """Delete a Pricing by ID or unique field"""
+  pricingDelete(by: PricingByInput!): PricingDeletePayload
+
+  """Update a Pricing"""
+  pricingUpdate(by: PricingByInput!, input: PricingUpdateInput!): PricingUpdatePayload
 }
 
 enum OrderByDirection {
@@ -44,20 +117,7 @@ type PageInfo {
   startCursor: String
 }
 
-type Query {
-  """Query a single Todo by an ID or a unique field"""
-  todo(
-    """The field and value by which to query the Todo"""
-    by: TodoByInput!
-  ): Todo
-
-  """Paginated query to fetch the whole list of `Todo`."""
-  todoCollection(after: String, before: String, first: Int, last: Int, orderBy: TodoOrderByInput): TodoConnection
-}
-
-type Todo {
-  complete: Boolean!
-
+type Pricing {
   """when the model was created"""
   createdAt: DateTime!
 
@@ -67,48 +127,69 @@ type Todo {
 
   """when the model was updated"""
   updatedAt: DateTime!
+  value: Float!
 }
 
-input TodoByInput {
+input PricingByInput {
   id: ID
 }
 
-type TodoConnection {
-  edges: [TodoEdge]
+type PricingConnection {
+  edges: [PricingEdge]
 
   """Information to aid in pagination"""
   pageInfo: PageInfo!
 }
 
-"""Input to create a Todo"""
-input TodoCreateInput {
-  complete: Boolean!
+"""Input to create a Pricing"""
+input PricingCreateInput {
   title: String!
+  value: Float!
 }
 
-type TodoCreatePayload {
-  todo: Todo
+type PricingCreatePayload {
+  pricing: Pricing
 }
 
-type TodoDeletePayload {
+type PricingDeletePayload {
   deletedId: ID!
 }
 
-type TodoEdge {
+type PricingEdge {
   cursor: String!
-  node: Todo!
+  node: Pricing!
 }
 
-input TodoOrderByInput {
+input PricingOrderByInput {
   createdAt: OrderByDirection
 }
 
-"""Input to update a Todo"""
-input TodoUpdateInput {
-  complete: Boolean
+"""Input to update a Pricing"""
+input PricingUpdateInput {
   title: String
+  value: FloatOperationsInput
 }
 
-type TodoUpdatePayload {
-  todo: Todo
+type PricingUpdatePayload {
+  pricing: Pricing
+}
+
+type Query {
+  """Query a single KPI by an ID or a unique field"""
+  kPI(
+    """The field and value by which to query the KPI"""
+    by: KPIByInput!
+  ): KPI
+
+  """Paginated query to fetch the whole list of `KPI`."""
+  kPICollection(after: String, before: String, first: Int, last: Int, orderBy: KPIOrderByInput): KPIConnection
+
+  """Query a single Pricing by an ID or a unique field"""
+  pricing(
+    """The field and value by which to query the Pricing"""
+    by: PricingByInput!
+  ): Pricing
+
+  """Paginated query to fetch the whole list of `Pricing`."""
+  pricingCollection(after: String, before: String, first: Int, last: Int, orderBy: PricingOrderByInput): PricingConnection
 }

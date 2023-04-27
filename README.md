@@ -8,14 +8,20 @@
 
 ```gql
 mutation Add {
-	a: todoCreate(input: { title: "Project cloned", complete: true }) {
-		todo {
+	a: pricingCreate(input: { title: "Free", value: 0 }) {
+		pricing {
 			id
 			title
 		}
 	}
-	b: todoCreate(input: { title: "List visible", complete: false }) {
-		todo {
+	b: pricingCreate(input: { title: "Individual", value: 25 }) {
+		pricing {
+			id
+			title
+		}
+	}
+	c: pricingCreate(input: { title: "Enterprise", value: 5000 }) {
+		pricing {
 			id
 			title
 		}

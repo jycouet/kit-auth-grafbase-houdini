@@ -1,0 +1,10 @@
+query Pricing {
+	pricingCollection(first: 6) {
+		edges {
+			node {
+				title
+				value
+			}
+		}
+	}
+}
