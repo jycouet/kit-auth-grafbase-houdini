@@ -4,6 +4,6 @@ import type { LayoutServerLoad } from './$types';
 export const load: LayoutServerLoad = async ({ locals, url }) => {
 	const session = await locals.getSession();
 	if (!session) {
-		throw redirect(303, '/auth/signin');
+		throw redirect(303, '/auth/signin?callbackUrl=' + encodeURIComponent(url.pathname));
 	}
 };

@@ -26,9 +26,9 @@
 					{user?.name}</a
 				>
 			</li>
-			<a href="/auth/signout" data-sveltekit-preload-data="off">Logout</a>
+			<a href="/auth/signout?callbackUrl=%2F" data-sveltekit-preload-data="off">Logout</a>
 		{:else}
-			<li><a href="/auth/signin" data-sveltekit-preload-data="off">Login</a></li>
+			<li><a href="/auth/signin?callbackUrl=%2F" data-sveltekit-preload-data="off">Login</a></li>
 		{/if}
 	</ul>
 </nav>

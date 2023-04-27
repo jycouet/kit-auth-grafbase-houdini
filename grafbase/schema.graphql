@@ -1,3 +1,11 @@
+schema
+	@auth(
+		providers: [{ type: jwt, issuer: "{{ env.ISSUER_VALUE }}", secret: "{{ env.AUTH_SECRET }}" }]
+		rules: [{ allow: private }]
+	) {
+	query: Query
+}
+
 type Pricing @model {
 	id: ID!
 	title: String!

@@ -1,4 +1,4 @@
-import { AUTH_GITHUB_ID, AUTH_GITHUB_SECRET, AUTH_SECRET } from '$env/static/private';
+import { AUTH_GITHUB_ID, AUTH_GITHUB_SECRET, AUTH_SECRET, ISSUER_VALUE } from '$env/static/private';
 import { setSession } from '$houdini';
 import type { JWT } from '@auth/core/jwt';
 import GitHub from '@auth/core/providers/github';
@@ -16,7 +16,7 @@ export const handleAuth = (async ({ event, resolve }) => {
 				const encodedToken = jsonwebtoken.sign(
 					{
 						...token,
-						iss: process.env.ISSUER_URL,
+						iss: ISSUER_VALUE,
 						exp: Math.floor(Date.now() / 1000) + 60 * 60
 					},
 					secret
